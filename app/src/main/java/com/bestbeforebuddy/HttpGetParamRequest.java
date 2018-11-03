@@ -15,24 +15,21 @@ public class HttpGetParamRequest extends AsyncTask<String, Void, String> {
     private static final String REQUEST_METHOD = "GET";
     private static final int READ_TIMEOUT = 15000;
     private static final int CONNECTION_TIMEOUT = 15000;
-    private static final String stringUrl = "192.168.10.207:8080";
+   // private static final String stringUrl = "192.168.10.207:8080";
+
     @Override
     protected String doInBackground(String... strings) {
         String result = "Failed";
         String user = strings[0];
-        String password = strings[1];
+        String password = strings[1].replace("+", "%2B");
+        String iv = strings[2].replace("+", "%2B");
         String inputLine;
 
         try {
 
-            String uri = new Uri.Builder()
-                    .scheme("http")
-                    .authority(stringUrl)
-                    .appendQueryParameter("username", user)
-                    .appendQueryParameter("password", password)
-                    .build()
-                    .toString();
-            URL myUrl = new URL(uri);
+            String url = "http://192.168.10.207:8080/Best_Before_Buddy/loginForm?username="+user+"&password="+password+"&IV="+iv;
+            System.out.println(url);
+            URL myUrl = new URL(url);
 
             //Creates a connection
             HttpURLConnection connection = (HttpURLConnection) myUrl.openConnection();

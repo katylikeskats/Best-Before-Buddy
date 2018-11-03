@@ -1,6 +1,7 @@
 package com.bestbeforebuddy;
 
 import android.content.Intent;
+import android.widget.EditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,6 +19,9 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 public class LoginScreen extends AppCompatActivity implements View.OnClickListener{
+    EditText user;
+    EditText password;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +29,9 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
 
         //buttons
         findViewById(R.id.loginButton).setOnClickListener(this);
+        //edit text
+        user = findViewById(R.id.usernameField);
+        password = findViewById(R.id.passwordField);
     }
 
     @Override
@@ -57,9 +64,11 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
     }
 
     protected void signIn(String user, String password){
+        String[] array = encrypt(password);
         HttpGetParamRequest getRequest = new HttpGetParamRequest();
-        String valid = getRequest.doInBackground(user, password);
-        if (valid.equals("True")){
+        String valid = getRequest.doInBackground(user, array[0], array[1]);
+        System.out.println("fdsjklfds"+valid);
+        if (valid.equals("Success")){
             Intent intent = new Intent(this, HomeScreen.class);
             startActivity(intent);
         }
@@ -69,7 +78,7 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
     public void onClick(View v){
         int i = v.getId();
         if (i == R.id.loginButton) {
-        //communicate with william's database to verify stuff and login
+            signIn(user.getText().toString(), password.getText().toString());
         }
     }
 }

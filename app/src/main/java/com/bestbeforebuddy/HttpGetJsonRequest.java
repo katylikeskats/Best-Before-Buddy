@@ -19,6 +19,13 @@ public class HttpGetJsonRequest extends AsyncTask<String, String, String> {
     private static final int READ_TIMEOUT = 15000;
     private static final int CONNECTION_TIMEOUT = 15000;
     private static final String stringUrl = "192.168.10.207:8080";
+
+    @Override
+    protected String doInBackground(String... strings) {
+        return null;
+    }
+
+    /*
     @Override
     protected String doInBackground(String... strings) {
         JSONParser jsonParser = new JSONParse();
@@ -62,30 +69,5 @@ public class HttpGetJsonRequest extends AsyncTask<String, String, String> {
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
 
-    }
+    }*/
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-+
