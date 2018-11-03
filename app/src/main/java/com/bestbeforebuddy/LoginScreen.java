@@ -5,6 +5,7 @@ import android.widget.EditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.util.Log;
 
 import org.apache.commons.codec.binary.Base64;
 
@@ -12,7 +13,6 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Random;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
@@ -55,7 +55,7 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
             Date now = new Date();
             byte[] encrypted = cipher.doFinal((sdf.format(now)).getBytes());
 
-            return new String[]{Base64.encodeBase64String(encrypted),Base64.encodeBase64String(IV)};
+            return new String[]{new String(Base64.encodeBase64(encrypted)),new String(Base64.encodeBase64(IV))};
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -67,9 +67,9 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
         String[] array = encrypt(password);
         HttpGetParamRequest getRequest = new HttpGetParamRequest();
         String valid = getRequest.doInBackground(user, array[0], array[1]);
-        System.out.println("fdsjklfds"+valid);
+        Log.e("is it valid", valid);
         if (valid.equals("Success")){
-            Intent intent = new Intent(this, HomeScreen.class);
+            Intent intent = new Intent(this, AccountScreen.class);
             startActivity(intent);
         }
     }

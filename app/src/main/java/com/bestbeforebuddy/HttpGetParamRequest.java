@@ -6,7 +6,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import android.net.Uri;
+import android.util.Log;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -27,8 +27,9 @@ public class HttpGetParamRequest extends AsyncTask<String, Void, String> {
 
         try {
 
-            String url = "http://192.168.10.207:8080/Best_Before_Buddy/loginForm?username="+user+"&password="+password+"&IV="+iv;
-            System.out.println(url);
+            String url = "http://192.168.10.207:8080/Best_Before_Buddy/loginForm?username="+user
+                    +"&password="+password+"&IV="+iv;
+            Log.e("url",url);
             URL myUrl = new URL(url);
 
             //Creates a connection
