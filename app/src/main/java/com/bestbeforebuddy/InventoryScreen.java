@@ -5,12 +5,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-public class AccountScreen extends AppCompatActivity implements View.OnClickListener {
-
+public class InventoryScreen extends AppCompatActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.account_screen);
+        setContentView(R.layout.inventory_screen);
 
         //buttons
         findViewById(R.id.notificationButton).setOnClickListener(this);
@@ -21,13 +20,12 @@ public class AccountScreen extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v){
         int i = v.getId();
-        if (i == R.id.notificationButton){
-            Intent intent = new Intent(this, NotificationScreen.class);
+        if (i == R.id.accountButton){
+            Intent intent = new Intent(this, AccountScreen.class);
             startActivity(intent);
-        } else if (i==R.id.inventoryButton){
-            Intent intent = new Intent(this, InventoryScreen.class);
+        } else if (i==R.id.notificationButton){
+            Intent intent = new Intent(this, NotificationScreen.class);
             startActivity(intent);
         }
     }
-
 }
