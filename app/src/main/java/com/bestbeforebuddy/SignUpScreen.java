@@ -32,9 +32,9 @@ public class SignUpScreen extends AppCompatActivity implements View.OnClickListe
 
     protected void signUp(String user, String password) throws Exception{
         //String[] array = encrypt(password);
-        ArrayList<String> out = new HttpLogInRequest().doInBackground(user, password);
+        ArrayList<String> out = new HttpSignUpRequest().doInBackground(user, password);
         if (out.get(0).equals("Success")){
-            Intent intent = new Intent(this, AccountScreen.class);
+            Intent intent = new Intent(this, LoginScreen.class);
             startActivity(intent);
         }
     }

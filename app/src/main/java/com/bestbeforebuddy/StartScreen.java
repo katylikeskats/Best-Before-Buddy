@@ -38,7 +38,7 @@ public class StartScreen extends AppCompatActivity implements View.OnClickListen
     public void onClick(View v){
         int i = v.getId();
         if (i == R.id.signUpButton){
-            Intent intent = new Intent(this, AccountScreen.class);
+            Intent intent = new Intent(this, SignUpScreen.class);
             startActivity(intent);
         } else if (i == R.id.loginButton) {
             Intent intent = new Intent(this, LoginScreen.class);

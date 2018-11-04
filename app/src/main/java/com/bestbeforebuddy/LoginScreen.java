@@ -49,17 +49,7 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
             startActivity(intent);
             Utils.user = user;
             Utils.password = password;
-           /* Thread t = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        ActionHandler.init();
-                    } catch (IOException e) {
-
-                    }
-                }
-            });
-            t.start();*/
+            ActionHandler.init();
         }
     }
 

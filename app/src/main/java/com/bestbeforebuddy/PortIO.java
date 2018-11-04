@@ -37,9 +37,9 @@ public class PortIO {
             //Prints each line of the response
             while (!bufRead.ready()) ;
             while (bufRead.ready() && !(msg = bufRead.readLine()).equals("$")) {
-                String IV=msg.substring(0,23);
-                String ct=msg.substring(23,msg.length()-1);
-                msg=decrypt(Utils.key,Base64.decodeBase64(IV),Base64.decodeBase64(ct));
+                String IV=msg.substring(0,15);
+                String ct=msg.substring(15,msg.length()-1);
+                msg=decrypt(Utils.key,IV,Base64.decodeBase64(ct));
                 strings.add(msg);
                 while (!bufRead.ready()) ;
             }
@@ -75,9 +75,9 @@ public class PortIO {
         wtr.println("$");
         wtr.flush();
     }
-    private static String decrypt(byte[] key, byte[] initVector, byte[] encrypted) {
+    private static String decrypt(byte[] key, String initVector, byte[] encrypted) {
         try {
-            IvParameterSpec iv = new IvParameterSpec(initVector);
+            IvParameterSpec iv = new IvParameterSpec(initVector.getBytes());
             SecretKeySpec skeySpec = new SecretKeySpec(key, "AES");
 
             Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
@@ -95,7 +95,7 @@ public class PortIO {
 
     public static String encrypt(byte[] key, String value) {
         try {
-            byte[] IV = new byte[16];
+            byte[] IV = new byte[11];
             new Random().nextBytes(IV);
             IvParameterSpec iv = new IvParameterSpec(IV);
             SecretKeySpec skeySpec = new SecretKeySpec(key, "AES");

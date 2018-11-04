@@ -22,7 +22,7 @@ public class HttpSignUpRequest extends AsyncTask<String, Void, ArrayList<String>
             PrintWriter wtr = new PrintWriter(Utils.s.getOutputStream());
 
             //Prints the request string to the output stream
-            wtr.println("create-account");
+            wtr.println("add-user");
             wtr.println(user);
             wtr.println(password);
             wtr.println("$");

@@ -8,12 +8,12 @@ import java.util.ArrayList;
 
 public class ActionHandler {
     public static void init() throws IOException {
-        /*PortIO.write( Utils.s, "key-exchange-1");
+        PortIO.write( Utils.s, "key-exchange-1");
         ArrayList<String> received = PortIO.read(Utils.s);
         int ret=Utils.middle(new int[]{Integer.parseInt(received.get(0)),Integer.parseInt(received.get(1)),Integer.parseInt(received.get(2))});
         PortIO.write(Utils.s, "key-exchange-3\n"+ret);
         Utils.end();
-        System.out.println(Utils.key);*/
+        System.out.println(Utils.key);
     }
 
     public static boolean addObjects(String item, String expiryDate, String category) throws IOException{
@@ -33,6 +33,19 @@ public class ActionHandler {
     }
 
     public static ArrayList<String[]> getTable() throws IOException{
+        ArrayList<String> out = new ArrayList<>();
+        out.add("get-table");
+        out.add(Utils.user);
+        String[] pass = Utils.encrypt(Utils.password);
+        out.add(pass[0]);
+        out.add(pass[1]);
+        PortIO.write(Utils.s, out);
+        ArrayList<String> received = PortIO.read(Utils.s);
+        ArrayList<String[]> table = new ArrayList<>();
+        table = Utils.convert(received);
+        return table;
+    }
+    public static ArrayList<String[]> getExpired() throws IOException{
         ArrayList<String> out = new ArrayList<>();
         out.add("get-expired");
         out.add(Utils.user);
