@@ -6,4 +6,8 @@
     <color name="black">#000000</color>
     <color name="translucentWhite">#94ffffff</color>
     <color name="grey">#bcbcbc</color>
+    <color name="cyan">#6bd5e1</color>
+    <color name="lightYellow">#FFD98E</color>
+    <color name="mustard">#FFB677</color>
+    <color name="orange">#FF8364</color>
 </resources>

@@ -15,6 +15,7 @@ public class InventoryScreen extends AppCompatActivity implements View.OnClickLi
         findViewById(R.id.notificationButton).setOnClickListener(this);
         findViewById(R.id.accountButton).setOnClickListener(this);
         findViewById(R.id.inventoryButton).setOnClickListener(this);
+        findViewById(R.id.addButton).setOnClickListener(this);
     }
 
     @Override
@@ -25,6 +26,9 @@ public class InventoryScreen extends AppCompatActivity implements View.OnClickLi
             startActivity(intent);
         } else if (i==R.id.notificationButton){
             Intent intent = new Intent(this, NotificationScreen.class);
+            startActivity(intent);
+        } else if (i == R.id.addButton){
+            Intent intent = new Intent(this, AddObjectScreen.class);
             startActivity(intent);
         }
     }

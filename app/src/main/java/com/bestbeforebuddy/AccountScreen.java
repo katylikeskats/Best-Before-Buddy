@@ -4,9 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.TextView;
 
 public class AccountScreen extends AppCompatActivity implements View.OnClickListener {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,6 +16,9 @@ public class AccountScreen extends AppCompatActivity implements View.OnClickList
         findViewById(R.id.notificationButton).setOnClickListener(this);
         findViewById(R.id.accountButton).setOnClickListener(this);
         findViewById(R.id.inventoryButton).setOnClickListener(this);
+
+        TextView textView = findViewById(R.id.welcomeMessage);
+        textView.setText("Hi "+Utils.user+"!");
     }
 
     @Override
