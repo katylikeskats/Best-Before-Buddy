@@ -33,6 +33,7 @@ public class HttpLogInRequest extends AsyncTask<String, Void, ArrayList<String>>
 
             out = PortIO.read(s);
             System.out.println("HTTPLOGIN"+out.size());
+            ActionHandler.init();
         } catch (IOException e){
             e.printStackTrace();
         }

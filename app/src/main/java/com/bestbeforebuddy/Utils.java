@@ -21,7 +21,8 @@ public class Utils {
     public static Socket s;
     private static int thatE;
     private static int[] bothNum = new int[3];
-    public static int key;
+    public static int keySeed;
+    public static byte[] key;
 
     public static void init() throws IOException {
         s = new Socket("192.168.10.207", 8080);
@@ -38,8 +39,11 @@ public class Utils {
     }
 
     public static void end() {
-        key= (int) powfast((long) bothNum[2], (long) thatE, (long) bothNum[1]);
-        System.out.println("UTILS"+key);
+        keySeed= (int) powfast((long) bothNum[2], (long) thatE, (long) bothNum[1]);
+        System.out.println("UTILS"+keySeed);
+        key=new byte[16];
+        new Random(keySeed).nextBytes(key);
+        System.out.println(new String(Base64.encodeBase64(key)));
     }
 
     private static long powfast(long a, long b, long mod) {
@@ -89,5 +93,7 @@ public class Utils {
 
         return null;
     }
+
+
 
 }

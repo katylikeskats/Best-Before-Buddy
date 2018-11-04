@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:layout_marginLeft="10dp"
-        android:text="________________________"
+        android:hint="________________________"
         app:layout_constraintLeft_toRightOf="@id/ItemText"
         app:layout_constraintTop_toBottomOf="@id/title" />
 
