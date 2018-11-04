@@ -39,7 +39,7 @@ public class PortIO {
             while (bufRead.ready() && !(msg = bufRead.readLine()).equals("$")) {
                 String IV=msg.substring(0,15);
                 String ct=msg.substring(15,msg.length()-1);
-                msg=decrypt(Utils.key,IV,Base64.decodeBase64(ct));
+                msg=decrypt(Utils.key.getBytes(),IV,Base64.decodeBase64(ct));
                 strings.add(msg);
                 while (!bufRead.ready()) ;
             }
@@ -58,9 +58,9 @@ public class PortIO {
         }else{
             PrintWriter wtr = new PrintWriter(s.getOutputStream());
             for (String strings : out) {
-                String enc=encrypt(Utils.key,strings);
+                String[] enc= Utils.encrypt(Utils.key,strings);
                 System.out.println("w pt: "+strings);
-                System.out.println("w enc:"+enc);
+                System.out.println("w enc:"+enc[0]+enc[1]);
                 System.out.println("DBG---------------");
                 wtr.println(enc);
             }
@@ -95,7 +95,7 @@ public class PortIO {
 
     public static String encrypt(byte[] key, String value) {
         try {
-            byte[] IV = new byte[11];
+            byte[] IV = new byte[16];
             new Random().nextBytes(IV);
             IvParameterSpec iv = new IvParameterSpec(IV);
             SecretKeySpec skeySpec = new SecretKeySpec(key, "AES");

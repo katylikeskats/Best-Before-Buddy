@@ -22,7 +22,7 @@ public class Utils {
     private static int thatE;
     private static int[] bothNum = new int[3];
     public static int keySeed;
-    public static byte[] key;
+    public static String key;
 
     public static void init() throws IOException {
         s = new Socket("192.168.10.207", 8080);
@@ -41,9 +41,9 @@ public class Utils {
     public static void end() {
         keySeed= (int) powfast((long) bothNum[2], (long) thatE, (long) bothNum[1]);
         System.out.println("UTILS"+keySeed);
-        key=new byte[16];
-        new Random(keySeed).nextBytes(key);
-        System.out.println(new String(Base64.encodeBase64(key)));
+        byte[] k=new byte[16];
+        new Random(keySeed).nextBytes(k);
+        key=new String(Base64.encodeBase64(k));
     }
 
     private static long powfast(long a, long b, long mod) {
@@ -69,8 +69,12 @@ public class Utils {
         }
         return table;
     }
+    public static String[] encrypt(String key){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return encrypt(key,sdf.format(new Date()));
+    }
 
-    public static String[] encrypt(String key) {
+    public static String[] encrypt(String key,String pt) {
         try {
             MessageDigest digest = MessageDigest.getInstance("MD5");
             byte[] hash = digest.digest(key.getBytes(StandardCharsets.UTF_8));
@@ -82,9 +86,7 @@ public class Utils {
             Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
             cipher.init(Cipher.ENCRYPT_MODE, skeySpec, iv);
 
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            Date now = new Date();
-            byte[] encrypted = cipher.doFinal((sdf.format(now)).getBytes());
+            byte[] encrypted = cipher.doFinal(pt.getBytes());
 
             return new String[]{new String(Base64.encodeBase64(encrypted)),new String(Base64.encodeBase64(IV))};
         } catch (Exception ex) {

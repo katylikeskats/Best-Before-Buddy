@@ -18,7 +18,7 @@ public class AccountScreen extends AppCompatActivity implements View.OnClickList
         findViewById(R.id.inventoryButton).setOnClickListener(this);
 
         TextView textView = findViewById(R.id.welcomeMessage);
-        textView.setText("Hi "+Utils.user+"!");
+        textView.setText("Hi test!");
     }
 
     @Override

@@ -10,15 +10,16 @@
     <ImageView
         android:id="@+id/image"
         android:layout_width="114dp"
-        android:layout_height="118dp"
+        android:layout_height="89dp"
         android:layout_weight="33.3"
-        android:src="@drawable/background1" />
+        android:src="@drawable/apple" />
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="158dp"
-        android:layout_height="117dp"
+        android:layout_height="89dp"
         android:layout_weight="33.3"
+        android:textSize="15dp"
         android:gravity="center"
         android:text="text"
         android:textAlignment="center" />
@@ -31,7 +32,7 @@
         <TextView
             android:id="@+id/textView2"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="48dp"
             android:gravity="center"
             android:text="textfdsfsdfs"
             android:textAlignment="center" />
@@ -39,7 +40,7 @@
         <TextView
             android:id="@+id/textView3"
             android:layout_width="104dp"
-            android:layout_height="57dp"
+            android:layout_height="41dp"
             android:layout_below="@+id/textView2"
             android:gravity="center"
             android:text="texfsklfjkdsljlt"

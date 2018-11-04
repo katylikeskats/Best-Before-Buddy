@@ -2,9 +2,11 @@ package com.bestbeforebuddy;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.os.Bundle;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -94,15 +96,14 @@ public class InventoryScreen extends AppCompatActivity implements View.OnClickLi
             itemText.setText(item);
             expiryDateText.setText(expiryDate);
             daysToGo.setText(daysLeft);
-            String fileName = "" ;
-            if (category.equals("food")){
-                fileName = "apple.png";
+            Drawable drawable = ResourcesCompat.getDrawable(getResources(),R.drawable.apple, null);;
+            if (category.equals("food")) {
+                drawable = ResourcesCompat.getDrawable(getResources(),R.drawable.apple, null);
             } else if (category.equals("medication")){
-                fileName = "pill.png";
+                drawable = ResourcesCompat.getDrawable(getResources(),R.drawable.pill, null);
             } else if (category.equals("household")){
-                fileName = "tide.png";
+                drawable = ResourcesCompat.getDrawable(getResources(),R.drawable.tide, null);
             }
-            Drawable drawable = Drawable.createFromPath("drawable/"+fileName);
             imageView.setImageDrawable(drawable);
 
             return convertView;

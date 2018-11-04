@@ -8,12 +8,12 @@ import java.util.ArrayList;
 
 public class ActionHandler {
     public static void init() throws IOException {
-        PortIO.write( Utils.s, "key-exchange-1");
+        /*PortIO.write( Utils.s, "key-exchange-1");
         ArrayList<String> received = PortIO.read(Utils.s);
         int ret=Utils.middle(new int[]{Integer.parseInt(received.get(0)),Integer.parseInt(received.get(1)),Integer.parseInt(received.get(2))});
         PortIO.write(Utils.s, "key-exchange-3\n"+ret);
         Utils.end();
-        System.out.println(Utils.key);
+        System.out.println(Utils.key);*/
     }
 
     public static boolean addObjects(String item, String expiryDate, String category) throws IOException{
